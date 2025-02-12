@@ -1,5 +1,5 @@
 module "mysql_sg" {
-    source = "../terraform-aws-securitygroup"
+    source = "../../terraform-aws-securitygroup"
     project_name = var.project_name
     environment = var.environment
     sg_name = "mysql"
@@ -9,7 +9,7 @@ module "mysql_sg" {
 }
 
 module "backend_sg" {
-    source = "../terraform-aws-securitygroup"
+    source = "../../terraform-aws-securitygroup"
     project_name = var.project_name
     environment = var.environment
     sg_name = "backend"
@@ -19,7 +19,7 @@ module "backend_sg" {
 }
 
 module "frontend_sg" {
-    source = "../terraform-aws-securitygroup"
+    source = "../../terraform-aws-securitygroup"
     project_name = var.project_name
     environment = var.environment
     sg_name = "frontend"

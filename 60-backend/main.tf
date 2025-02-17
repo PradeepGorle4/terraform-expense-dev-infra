@@ -40,3 +40,22 @@ resource "null_resource" "backend" {
     ]
   }
 }
+
+resource "aws_ec2_instance_state" "backend_stop" {
+  instance_id = aws_instance.backend.id
+  state       = "stopped"
+  depends_on = [ null_resource.backend ]
+}
+
+resource "aws_ami_from_instance" "backend_ami" {
+  name               = local.resource_name
+  source_instance_id = aws_instance.backend.id
+  depends_on = [ aws_ec2_instance_state.backend_stop ]
+}
+
+resource "null_resource" "backend_delete" {
+  provisioner "local-exec" {
+    command = "aws ec2 terminate-instances --instance-ids=${aws_instance.backend.id}"
+  }
+  depends_on = [ aws_ami_from_instance.backend_ami ]
+}

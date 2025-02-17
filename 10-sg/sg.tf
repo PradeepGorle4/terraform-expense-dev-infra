@@ -135,3 +135,12 @@ resource "aws_security_group_rule" "mysql_bastion" {
     security_group_id = module.mysql_sg.sg_id
 }
 
+resource "aws_security_group_rule" "mysql_vpn" { # This means mysql accepting traffic from vpn
+    type = "ingress"
+    from_port = 3306
+    to_port = 3306
+    protocol = "tcp"
+    source_security_group_id = module.vpn_sg.sg_id
+    security_group_id = module.mysql_sg.sg_id
+}
+

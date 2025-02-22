@@ -17,3 +17,7 @@ variable "environment" {
 variable "domain_name" {
   default = "pradeepdevops.online"
 }
+
+variable "zone_id" {
+  default = "Z025468528XQ0B4FE5YQ9"
+}

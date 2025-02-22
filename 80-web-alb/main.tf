@@ -38,7 +38,7 @@ resource "aws_alb_listener" "https" {
 
 resource "aws_route53_record" "web_alb" {
     zone_id = var.zone_id
-    name = "*.web-dev.${var.domain_name}"
+    name = "*.${var.domain_name}"
     type = "A"
 
 # These are APP ALB name and Zone ID information

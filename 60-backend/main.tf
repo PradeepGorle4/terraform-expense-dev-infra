@@ -154,7 +154,7 @@ resource "aws_alb_listener_rule" "backend" {
 
   condition {
     host_header {
-      values = ["backend.app-${var.var.environment}.${var.domain_name}"]
+      values = ["backend.app-${var.environment}.${var.domain_name}"]
     }
   }
 }

@@ -1,0 +1,8 @@
+locals {
+  # StringList to List
+  public_subnet_ids = split(",", data.aws_ssm_parameter.public_subnet_ids.value)
+}
+
+locals {
+  web_alb_sg_id = data.aws_ssm_parameter.web_alb_sg_id.value
+}

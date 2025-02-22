@@ -47,6 +47,15 @@ module "app_alb_sg" {
     vpc_id = data.aws_ssm_parameter.vpc_id.value
     common_tags = var.common_tags
 }
+module "web_alb_sg" {
+    source = "../../terraform-aws-securitygroup"
+    project_name = var.project_name
+    environment = var.environment
+    sg_name = "web-alb"
+    sg_description = "created for Frontend(web) Load balancer in expense-dev"
+    vpc_id = data.aws_ssm_parameter.vpc_id.value
+    common_tags = var.common_tags
+}
 
 # port 22, 443, 1194, 943 - ports to be opened for VPN
 module "vpn_sg" {
@@ -178,6 +187,15 @@ resource "aws_security_group_rule" "backend_alb" {
     protocol = "tcp"
     source_security_group_id = module.app_alb_sg.sg_id
     security_group_id = module.backend_sg.sg_id
+}
+
+resource "aws_security_group_rule" "web_alb_https" {
+  type = "ingress"
+    from_port = 443
+    to_port = 443
+    protocol = "tcp"
+    source_security_group_id = module.web_alb_sg.sg_id
+    security_group_id = module.web_alb_sg.sg_id
 }
 
 

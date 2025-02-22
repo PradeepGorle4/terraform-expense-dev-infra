@@ -1,6 +1,6 @@
 module "alb" {
   source   = "terraform-aws-modules/alb/aws"
-  internal = true
+  internal = false
   # expense-dev-alb
   name                  = "${var.project_name}-${var.environment}-web-alb"
   vpc_id                = data.aws_ssm_parameter.vpc_id.value

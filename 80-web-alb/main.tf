@@ -21,12 +21,15 @@ resource "aws_alb_listener" "https" {
     load_balancer_arn = module.alb.arn
     protocol = "HTTPS"
     port = "443"
+    ssl_policy = "ELBSecurityPolicy-2016-08"
+    certificate_arn = local.web_alb_certificate_arn
+
     default_action {
       type = "fixed-response"
 
       fixed_response {
         content_type = "text/html"
-        message_body = "<h1>Hello, Iam from Backend App ALB</h1>"
+        message_body = "<h1>Hello, Iam from Frontend web ALB with HTTPS</h1>"
         status_code = 200
       }
 

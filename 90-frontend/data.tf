@@ -30,6 +30,6 @@ data "aws_ssm_parameter" "vpc_id" {
   name = "/${var.project_name}/${var.environment}/vpc_id"
 }
 
-data "aws_ssm_parameter" "web_app_alb_listener_arn" {
-  name = "/${var.project_name}/${var.environment}/web_app_alb_listener_arn"
+data "aws_ssm_parameter" "web_alb_listener_arn" {
+  name = "/${var.project_name}/${var.environment}/web_alb_listener_arn"
 }

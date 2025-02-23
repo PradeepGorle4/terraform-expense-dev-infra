@@ -218,8 +218,8 @@ resource "aws_security_group_rule" "frontend_web_alb" { # frontend accepting tra
 
 resource "aws_security_group_rule" "frontend_public" { # Frontend accepting traffic from public, this rule is created just to avoid VPN
   type = "ingress"      # But, do not do this in Production, no public access should be allowed in PROD
-    from_port = 80    # usaully, you should configure Frontend using Private IP's accepting traffic from VPN only
-    to_port = 80
+    from_port = 22    # usaully, you should configure Frontend using Private IP's accepting traffic from VPN only
+    to_port = 22
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
     security_group_id = module.frontend_sg.sg_id

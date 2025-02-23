@@ -99,7 +99,7 @@ resource "aws_autoscaling_group" "backend" {
   name                      = local.resource_name
   max_size                  = 5
   min_size                  = 1
-  health_check_grace_period = 60
+  health_check_grace_period = 120 # 2mins for instance to initialize
   health_check_type         = "ELB"
   desired_capacity          = 1
 

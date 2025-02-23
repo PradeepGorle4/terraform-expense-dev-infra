@@ -221,7 +221,7 @@ resource "aws_security_group_rule" "frontend_public" { # Frontend accepting traf
     from_port = 80    # usaully, you should configure Frontend using Private IP's accepting traffic from VPN only
     to_port = 80
     protocol = "tcp"
-    cidr_blocks = ["0.0.0.0./0"]
+    cidr_blocks = ["0.0.0.0/0"]
     security_group_id = module.frontend_sg.sg_id
 }
 
